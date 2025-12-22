@@ -1,16 +1,27 @@
 plugins {
-    id 'java-library'
+    id 'java'
 }
 
 repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
-    testImplementation (
+    testImplementation(
             "com.codeborne:selenide:7.5.0",
-            "org.junit.jupiter:junit-jupiter:5.9.2"
+            "org.junit.jupiter:junit-jupiter:5.10.2"
     )
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 }
 
 test {
