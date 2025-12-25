@@ -12,7 +12,14 @@ public class selenideRepoSearch {
 
         open("https://github.com/");
 
-        $("[placeholder='Search or jump to...']").click();
-        $("[placeholder='Search or jump to...']").sendKeys("selenide", Keys.ENTER);
+        $("[data-target='qbsearch-input.inputButtonText']").click();
+        $("#query-builder-test").setValue("selenide").pressEnter();
+
+        sleep(5000);
+
+
+
+        //$("[placeholder='Search or jump to...']").click();
+        //$("[placeholder='Search or jump to...']").sendKeys("selenide", Keys.ENTER);
     }
 }
