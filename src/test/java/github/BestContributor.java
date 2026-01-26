@@ -23,7 +23,7 @@ public class BestContributor {
                 .closest(".BorderGrid-cell").$$("ul li").first().hover();
         sleep(2000);
         //$$(".Popover-message").shouldHave(text("Andrei Solntsev"));
-        $("[aria-label='User Hovercard']").$("a").shouldHave(text("Andrei Solntsev"));
+        $("[aria-label='User login and name']").$("a").shouldHave(text("asolntsev"));
         sleep(5000);
     }
 }
