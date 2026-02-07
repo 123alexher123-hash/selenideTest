@@ -2,7 +2,10 @@ package github;
 
 import Pages.AuthorizedPage;
 import Pages.LoginLkPage;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class loginLK extends TestBaseLogin{
@@ -10,16 +13,20 @@ public class loginLK extends TestBaseLogin{
     LoginLkPage loginLkPage = new LoginLkPage();
     AuthorizedPage authorizedPage = new AuthorizedPage();
 
-    @Test
-    void loginPositive() {
+    @CsvSource(value = {
+            "a.yakovlev+test@aqsi.ru,  aQsi1312",
+            "a.yakovlev+1@aqsi.ru,     aQsi1312",
+    })
+    @ParameterizedTest(name = "После авторизации в ЛК отображается {0}")
+    void loginPositive(String login, String password) {
 
         loginLkPage
                 .openLoginPage()
-                .setValueLogin("a.yakovlev+test@aqsi.ru")
-                .setValuePassword("aQsi1312")
+                .setValueLogin(login)
+                .setValuePassword(password)
                 .clickSubmitBtn();
         authorizedPage
-                .findLoginLK("a.yakovlev+test@aqsi.ru");
+                .findLoginLK(login);
 
         sleep(2000);
 
